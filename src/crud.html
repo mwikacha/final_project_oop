@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Makeup List</title>
+  <link rel="stylesheet" href="index2.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('BBB-Lead-Makeup-986ae31113a542e5902b6d1d5b56d811.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .mainWrapper {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff3366;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #ff3366;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff0033;
+    }
+
+    .back-button {
+      background-color: #ff3366;
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-button">&#8592;</a> <!-- This is a left arrow character -->
+  <div class="mainWrapper">
+    <h1>ADD YOUR MAKEUP TO YOUR FAVOURITE LIST!!</h1>
+    <form>
+      <div class="form-group">
+        <label>Product Name</label>
+        <input id="productName" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="productDescription" class="form-control" rows="5"></textarea>
+      </div>
+    </form>
+    <button id="btnCreate" class="btn">ADD</button>
+    <button id="btnRead" class="btn">READ</button>
+    <button id="btnDelete" class="btn">DELETE</button>
+    <button id="btnUpdate" class="btn">UPDATE</button>
+
+  </div>
+  <script src="main2.js"></script>
+</body>
+</html>

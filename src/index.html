@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Makeup Box</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="nav">
+      <a href="crud.html" class="nav-link">Make My Makeup List</a>
+      <button id="openFavourites" class="nav-button">Favorites</button>
+    </div>
+    <div class="container">
+      <h1 class="logo">Makeup Box</h1>
+    </div>
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img src="best-makeup-subscription-boxes-2000-79dec308645649ff831f8b242a6d380f.jpg" alt="Image 1">
+      </div>
+      <div class="mySlides fade">
+        <img src="Iconic-makeup-shades-featured.jpg" alt="Image 2">
+      </div>
+      <!-- Add more slides as needed -->
+    </div>
+  </header>
+  <div class="container">
+    <input type="text" id="makeup_input" placeholder="Search makeup" class="search-bar">
+    <button type="button" onclick="buttonOnclicked()" class="search-button">Search</button>
+    <div id="makeUp" class="makeup-results">
+      <!-- Makeup product results will be displayed here -->
+      
+    </div>
+  </div>
+  <script src="main.js"></script>
+  <!-- ... (previous HTML code) -->
+</div>
+<script src="main.js"></script>
+<script>
+   const { ipcRenderer } = require('electron');
+
+  // Function to open the Favourites window
+  document.getElementById('openFavourites').addEventListener('click', () => {
+    ipcRenderer.send('open-favourites');
+  });
+  // Function to handle the slideshow
+  var slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 2000); // Change slides every 2 seconds (adjust as needed)
+  }
+</script>
+</body>
+</html>
+
+
+

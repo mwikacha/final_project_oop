@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorites</title>
+  <style>
+    body {
+      background-image: url('d43bd9b120a9e08dc607c23965d1b762.jpg'); /* Set your background image URL here */
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    #mainWrapper {
+      background-color: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    #fileList {
+      padding: 10px;
+    }
+
+    h3 {
+      color: #ff69b4; /* Pink color */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="mainWrapper">
+    <h3>Your Favourite Makeup List:</h3>
+    <div id="fileList">
+      <ul>
+        <!-- This is where your list items will be dynamically added -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Handle the 'displayCreatedFiles' event and update the list of created files
+    ipcRenderer.on('displayCreatedFiles', (event, fileData) => {
+      const fileList = document.querySelector('ul');
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `Name: ${fileData.name}<br>Description: ${fileData.description}`;
+      fileList.appendChild(listItem);
+
+      ipcRenderer.send('storeFileData', fileData);
+
+    });
+
+  ipcRenderer.send('requestStoredFileData');
+  ipcRenderer.on('storedFileData', (event, storedData) => {
+    const fileList = document.querySelector('ul');
+    
+    storedData.forEach((fileData) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `Name: ${fileData.name}<br>Description: ${fileData.description}`;
+      fileList.appendChild(listItem);
+    });
+  });
+
+  ipcRenderer.on('refreshFileList', (event, updatedData) => {
+    const fileList = document.querySelector('ul');
+    fileList.innerHTML = '';
+
+    updatedData.forEach((fileData) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `Name: ${fileData.name}<br>Description: ${fileData.description}`;
+      fileList.appendChild(listItem);
+    });
+  });
+
+  
+
+
+  </script>
+</body>
+</html>
